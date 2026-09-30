@@ -4,6 +4,7 @@ import Hero from './sections/Hero'
 import TechStack from './sections/TechStack'
 import Services from './sections/Services'
 import Experience from './sections/Experience'
+import Recognition from './sections/Recognition'
 
 export default function App() {
   return (
@@ -12,6 +13,7 @@ export default function App() {
       <TechStack />
       <Services />
       <Experience />
+      <Recognition />
     </MainLayout>
   )
 }
