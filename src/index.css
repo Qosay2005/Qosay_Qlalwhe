@@ -18,6 +18,45 @@
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 }
 
+@layer components {
+  .tech-marquee {
+    mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
+  }
+  .tech-track {
+    animation: tech-marquee 60s linear infinite;
+  }
+  .tech-track-right { animation-direction: reverse; }
+  .tech-marquee:hover .tech-track,
+  .tech-marquee:focus-within .tech-track,
+  [data-tech-paused="true"] .tech-track { animation-play-state: paused; }
+  .tech-marquee:focus-within { mask-image: none; }
+  .tech-card { perspective: 800px; }
+  .tech-card-inner {
+    transform-style: preserve-3d;
+    transition: transform 600ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+  .tech-card-front, .tech-card-back { backface-visibility: hidden; }
+  .tech-card-back { transform: rotateY(180deg); }
+  .tech-card:hover .tech-card-inner,
+  .tech-card:focus .tech-card-inner { transform: rotateY(180deg); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tech-marquee { overflow-x: auto; mask-image: none; }
+    .tech-track { animation: none; translate: none !important; }
+    .tech-set { padding-left: 1rem; }
+    .tech-duplicate, .tech-motion-control { display: none; }
+    .tech-card-inner { transition: none; transform: none !important; }
+    .tech-card-front { visibility: hidden; }
+    .tech-card-back { transform: none; }
+  }
+}
+
+/* Each half includes its trailing gap, so -50% is exactly one complete set. */
+@keyframes tech-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
