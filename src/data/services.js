@@ -2,19 +2,19 @@ export const services = [
   {
     id: 'responsive-web-development',
     title: 'Responsive Web Development',
-    description: 'I build responsive websites that adapt seamlessly across mobile, tablet, and desktop devices, with a strong focus on usability, accessibility, and clean layouts.',
+    description: 'I turn designs and ideas into responsive websites that work smoothly across desktop, tablet, and mobile devices.',
     icon: 'devices',
   },
   {
     id: 'front-end-development',
     title: 'Front-End Development',
-    description: 'I build modern and interactive user interfaces using React, JavaScript, TypeScript, Tailwind CSS, and modern front-end tools, with a focus on clean code and performance.',
+    description: 'I build modern and user-friendly web applications using React, JavaScript, and modern frontend technologies.',
     icon: 'browser',
   },
   {
     id: 'problem-solving-instructor',
-    title: 'Problem Solving Instructor',
-    description: 'I teach problem solving and competitive programming concepts, helping students strengthen their algorithmic thinking, understand core techniques, and approach coding problems with confidence.',
+    title: 'Programming & Problem Solving Training',
+    description: 'I provide practical programming and problem-solving training to help students build strong technical and analytical skills.',
     icon: 'logic',
   },
 ]
