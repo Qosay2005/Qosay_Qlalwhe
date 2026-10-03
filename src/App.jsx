@@ -5,6 +5,7 @@ import TechStack from './sections/TechStack'
 import Services from './sections/Services'
 import Experience from './sections/Experience'
 import Recognition from './sections/Recognition'
+import Projects from './sections/Projects'
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
       <Services />
       <Experience />
       <Recognition />
+      <Projects />
     </MainLayout>
   )
 }

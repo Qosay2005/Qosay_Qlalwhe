@@ -22,7 +22,7 @@ export default function Recognition() {
       </header>
 
       {recognitions.length > 0 ? (
-        <div className="mt-9 grid grid-cols-1 gap-6 sm:mt-12 sm:grid-cols-2 lg:grid-cols-3 [&>*]:transition-colors [&>*]:duration-300 [&>*:hover]:border-primary">
+        <div className="mt-9 grid grid-cols-1 gap-6 sm:mt-12 sm:grid-cols-2 lg:grid-cols-3">
           {recognitions.map((recognition) => (
             <RecognitionCard
               key={recognition.id}

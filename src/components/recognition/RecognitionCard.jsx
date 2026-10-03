@@ -55,7 +55,7 @@ export default function RecognitionCard({ recognition }) {
   const externalUrl = getPostUrl(postUrl)
 
   return (
-    <article aria-labelledby={headingId} className="group flex min-w-0 flex-col gap-5 rounded-md border border-border bg-white p-5 [overflow-wrap:anywhere] transition-[transform,border-color,box-shadow] duration-400 ease-out hover:-translate-y-1 hover:border-primary-light hover:shadow-sm hover:shadow-primary-dark/10 focus-within:border-primary-light motion-reduce:transform-none motion-reduce:transition-none sm:p-6">
+    <article aria-labelledby={headingId} className="group flex min-w-0 flex-col gap-5 rounded-md border border-border bg-white p-5 [overflow-wrap:anywhere] transition-[transform,border-color,box-shadow] duration-400 ease-out hover:-translate-y-1 hover:border-primary hover:shadow-sm hover:shadow-primary-dark/10 focus-within:border-primary motion-reduce:transform-none motion-reduce:transition-none sm:p-6">
       <header>
         <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2 font-mono text-[10px] leading-5 sm:text-xs">
           <p className="font-medium tracking-wider text-primary-action uppercase">{category}</p>
