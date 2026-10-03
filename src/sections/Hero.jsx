@@ -1,5 +1,6 @@
 import heroImage from "../assets/images/hero/qosay.jpg";
 import TypingText from '../components/ui/TypingText'
+import Reveal from '../components/animations/Reveal'
 const buttonClass =
   "inline-flex min-h-12 items-center justify-center gap-3 rounded-md px-5 text-sm font-semibold transition-colors motion-reduce:transition-none";
 
@@ -12,7 +13,7 @@ export default function Hero() {
     >
       <div className="grid items-center gap-12 lg:grid-cols-[1.2fr_1fr] lg:gap-10 xl:gap-16">
         <div className="min-w-0">
-          <div className="mb-8 flex flex-wrap items-center gap-x-4 gap-y-3 font-mono text-[10px] tracking-wider text-text-secondary sm:text-xs">
+          <Reveal entrance delay={0.05} className="mb-8 flex flex-wrap items-center gap-x-4 gap-y-3 font-mono text-[10px] tracking-wider text-text-secondary sm:text-xs">
             <span>FROM JENIN, PALESTINE</span>
             <span className="inline-flex items-center gap-2 rounded-full bg-primary-light/30 px-3 py-1.5 text-primary-dark">
               <span aria-hidden="true" className="relative flex size-2">
@@ -21,25 +22,25 @@ export default function Hero() {
               </span>
               Available for hire
             </span>
-          </div>
+          </Reveal>
 
-          <p className="mb-3 text-lg text-text-secondary">Hello, I&apos;m</p>
-          <h1
+          <Reveal as="p" entrance delay={0.05} className="mb-3 text-lg text-text-secondary">Hello, I&apos;m</Reveal>
+          <Reveal as="h1" entrance delay={0.12}
             id="hero-heading"
             className="text-4xl leading-[1.1] font-bold tracking-tight text-text-primary sm:text-6xl lg:text-5xl xl:text-6xl"
           >
             Qosay Qlalwhe
-          </h1>
-          <p className="mt-4 font-heading text-2xl leading-snug font-medium text-primary-action sm:text-3xl">
+          </Reveal>
+          <Reveal as="p" entrance delay={0.19} className="mt-4 font-heading text-2xl leading-snug font-medium text-primary-action sm:text-3xl">
             <TypingText />
-          </p>
+          </Reveal>
           
-          <p className="mt-6 max-w-lg text-base leading-7 text-text-secondary sm:text-lg sm:leading-8">
+          <Reveal as="p" entrance delay={0.26} className="mt-6 max-w-lg text-base leading-7 text-text-secondary sm:text-lg sm:leading-8">
             I build modern, responsive, and user-focused web experiences with
             clean, scalable code and thoughtful interfaces.
-          </p>
+          </Reveal>
 
-          <div className="mt-8 flex flex-wrap gap-3">
+          <Reveal entrance delay={0.33} className="mt-8 flex flex-wrap gap-3">
             <a
               href="#projects"
               className={`${buttonClass} group bg-primary-action text-white hover:bg-primary-dark`}
@@ -59,10 +60,10 @@ export default function Hero() {
             >
               Resume <span aria-hidden="true"></span>
             </a>
-          </div>
+          </Reveal>
         </div>
 
-        <div className="group relative isolate mx-auto w-full max-w-md px-3 py-4 lg:max-w-sm xl:max-w-md">
+        <Reveal entrance direction="right" delay={0.19} className="group relative isolate mx-auto w-full max-w-md px-3 py-4 lg:max-w-sm xl:max-w-md">
   {/* Background Shape */}
   <div
     aria-hidden="true"
@@ -117,7 +118,7 @@ export default function Hero() {
       </div>
     )}
   </div>
-</div>
+</Reveal>
       </div>
     </section>
   );

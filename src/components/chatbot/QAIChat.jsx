@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import './qai.css'
-
+import avatar_img from '../../assets/images/hero/qosay.jpg'
 const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000').replace(/\/+$/, '')
 // Put your photo at public/images/qai/qai-avatar.jpg and set this to '/images/qai/qai-avatar.jpg'.
-const AVATAR_SOURCE = ''
+const AVATAR_SOURCE = avatar_img
 const welcome = "مرحباً! أنا QAI، المساعد الذكي الخاص بقصي 👋\nبقدر أساعدك تتعرف على مشاريعه، مهاراته، خبراته، إنجازاته وخدماته. شو حاب تعرف عنه؟";const questions = [
   ['Projects', "Tell me about Qosay's projects."],
   ['Skills', 'What technologies and skills does Qosay have?'],

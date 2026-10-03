@@ -185,3 +185,69 @@ Before public deployment, configure the HTTPS backend URL, exact production CORS
 origins, hosting request limits and Gemini budget/quota controls. Optionally replace
 the avatar. The remaining UX check is opening QAI on a physical phone, typing with
 its keyboard and checking the close button/input, plus assistive-technology testing.
+
+## Scroll-reveal animations
+
+The animation system lives in `src/components/animations/Reveal.jsx` and imports
+Motion for React from `motion/react`. `motion` is the only newly added direct dependency.
+
+```jsx
+<Reveal>Content revealed on scroll</Reveal>
+<Reveal direction="left" delay={0.08}>Desktop timeline card</Reveal>
+<Reveal entrance delay={0.12} as="h1">Page-load heading</Reveal>
+```
+
+Props: `direction` (`up`, `left`, `right`, `fade`), `delay`, `duration`, `distance`,
+`entrance`, `as` (`div`, `header`, `p`, `h1`), `className`, and `children`.
+Normal HTML props such as IDs and ARIA labels are forwarded. Defaults are 32px,
+0.6 seconds, no delay, a smooth ease-out curve `[0.22, 1, 0.36, 1]`, and a 15%
+viewport threshold with `once: true`. Left/right movement is capped at 24px to fit
+existing desktop page gutters; below 1024px it becomes a 32px upward entrance.
+
+`entrance` starts on mount for the Hero, with delays of 0.05–0.33 seconds. Other
+sections use viewport reveals. Tech Stack animates its heading and outer marquee
+container. Services, Recognition and Projects use 0.08-second card stagger steps;
+card-row delays reset after three items. Experience alternates left/right card
+entrances on desktop. Contact animates only its heading and form container.
+Footer, Navbar and QAI have no scroll reveals.
+
+Existing sections and IDs remain in place. Card wrappers animate separately from
+CSS hover/flip transforms; the marquee tracks keep their original CSS animation.
+`as` preserves existing heading/header semantics without extra wrappers. Card
+wrappers use a single-cell grid to preserve the original stretching and sizes.
+Only transforms and opacity animate; layout dimensions are stable.
+
+`useReducedMotion` makes all reveal content immediately visible with zero duration
+and delay. A small CSS fallback also shows content before Motion reads that
+preference. Keyboard focus immediately reveals the containing block, so a user
+cannot land on a hidden control. Visibility uses Motion's viewport observer,
+with no new scroll listeners; breakpoint changes use a media-query subscription.
+
+Verification: production build passes. Animation/section lint passes; full lint
+still reports the pre-existing `TypingText.jsx:23` set-state-in-effect error.
+Original versus updated section positions, card sizes, form dimensions and link
+attributes match at 1280px, 768px and 390px widths. Also checked the 1024px breakpoint
+for overflow, all 33 reveal blocks, once-only visibility, mobile navigation,
+service flip controls, marquee pause/resume, QAI chat, and Contact validation and
+success/error toasts. Contact responses were mocked locally, without sending test
+messages. Reduced-motion visibility was checked using an emulated media preference.
+Temporary verification fixtures were removed after testing.
+
+Existing issues preserved: the Resume URL points to a PDF currently absent from
+`public/resume/`; project/social/recognition placeholder URLs remain unchanged.
+
+### How the animation system works
+
+1. Motion for React is the animation library.
+2. Reveal wraps a content block or preserves its tag with `as`.
+3. `initial` applies the hidden starting opacity and offset.
+4. `whileInView` animates to the visible state when scrolling into view.
+5. `viewport` configures the 15% visibility threshold.
+6. `once: true` keeps revealed content visible when scrolling away and back.
+7. `variants` defines the shared hidden and visible states.
+8. `direction` chooses upward, left, right or opacity-only movement.
+9. `delay` waits briefly before beginning a reveal.
+10. Stagger uses small increasing delays for neighboring cards.
+11. Reduced motion bypasses the movement and delays.
+12. Each section imports Reveal and applies it to headers or content blocks;
+    section roots and existing interactions stay in place.

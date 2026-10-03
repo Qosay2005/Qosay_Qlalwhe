@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import TechCard from '../components/tech/TechCard'
 import { technologies } from '../data/technologies'
+import Reveal from '../components/animations/Reveal'
 
 function MarqueeRow({ reverse = false, decorative = false }) {
   // Bring keyboard-focused cards into view without resetting the CSS animation.
@@ -47,7 +48,7 @@ export default function TechStack() {
 
   return (
     <section id="tech-stack" aria-labelledby="tech-stack-heading" className="overflow-hidden py-16 sm:py-20" data-tech-paused={paused}>
-      <div className="mx-auto mb-9 max-w-2xl px-4 text-center sm:mb-12 sm:px-6">
+      <Reveal className="mx-auto mb-9 max-w-2xl px-4 text-center sm:mb-12 sm:px-6">
         <h2 id="tech-stack-heading" className="font-heading text-3xl font-semibold tracking-tight text-text-primary sm:text-4xl">My Tech Stack &amp; Tools</h2>
         <p className="mx-auto mt-4 max-w-xl text-sm leading-7 text-text-secondary sm:text-base">
           Technologies and tools I use to build modern, performant, and maintainable digital experiences.
@@ -55,11 +56,11 @@ export default function TechStack() {
         <button type="button" aria-pressed={paused} onClick={() => setPaused((previous) => !previous)} className="tech-motion-control mt-4 min-h-11 rounded-md px-3 font-mono text-xs text-primary-dark hover:bg-surface">
           {paused ? 'Resume motion' : 'Pause motion'}
         </button>
-      </div>
-      <div className="space-y-3 sm:space-y-4">
+      </Reveal>
+      <Reveal delay={0.08} className="space-y-3 sm:space-y-4">
         <MarqueeRow reverse />
         <MarqueeRow decorative />
-      </div>
+      </Reveal>
     </section>
   )
 }

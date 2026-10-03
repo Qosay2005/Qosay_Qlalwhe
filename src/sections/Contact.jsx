@@ -1,5 +1,6 @@
 import { useCallback, useRef, useState } from 'react'
 import ContactNotification from '../components/contact/ContactNotification'
+import Reveal from '../components/animations/Reveal'
 
 const formEndpoint = 'https://formspree.io/f/mppwgvjl'
 const emptyForm = { name: '', email: '', message: '' }
@@ -141,13 +142,13 @@ export default function Contact() {
       )}
       <div aria-hidden="true" className="pointer-events-none absolute -top-24 -right-24 -z-10 size-80 rounded-full bg-primary-light/5 blur-3xl" />
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 xl:px-8">
-        <header className="mx-auto mb-9 max-w-2xl text-center sm:mb-12">
+        <Reveal as="header" className="mx-auto mb-9 max-w-2xl text-center sm:mb-12">
           <p className="mb-4 font-mono text-xs tracking-wider text-primary-light uppercase">Let’s connect</p>
           <h2 id="contact-heading" className="font-heading text-3xl font-semibold tracking-tight text-white sm:text-4xl">Let’s Build Something Together.</h2>
           <p className="mt-4 text-sm leading-7 text-primary-light sm:text-base">Have a project, opportunity, collaboration, or idea in mind? Send me a message and I’ll get back to you.</p>
-        </header>
+        </Reveal>
 
-        <div className="mx-auto max-w-3xl">
+        <Reveal delay={0.08} className="mx-auto max-w-3xl">
           <form action={formEndpoint} method="POST" noValidate onSubmit={handleSubmit} aria-label="Contact Qosay" aria-busy={isSubmitting} className="rounded-3xl border border-white/10 bg-white/5 p-5 shadow-lg shadow-text-primary/10 transition-[border-color,box-shadow] duration-300 ease-out focus-within:border-primary-light/40 focus-within:shadow-text-primary/15 motion-reduce:transition-none sm:p-10">
             <div className="mb-8 sm:mb-10">
               <p className="flex items-center gap-2.5 font-mono text-[10px] leading-5 tracking-wider text-primary-light uppercase sm:text-xs">
@@ -181,7 +182,7 @@ export default function Contact() {
               {submissionStatus === 'submitting' && <p className="mt-4">Sending your message…</p>}
             </div>
           </form>
-        </div>
+        </Reveal>
         {/* TODO: Add alternative contact links when verified social URLs are available. */}
       </div>
     </section>

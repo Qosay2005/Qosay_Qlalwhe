@@ -73,5 +73,7 @@
   }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
+    /* Show reveals even before Motion reads the visitor's preference. */
+    .reveal { opacity: 1 !important; transform: none !important; }
   }
 }

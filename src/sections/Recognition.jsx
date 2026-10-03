@@ -1,5 +1,6 @@
 import RecognitionCard from '../components/recognition/RecognitionCard'
 import { recognitions } from '../data/recognitions'
+import Reveal from '../components/animations/Reveal'
 
 export default function Recognition() {
   return (
@@ -8,7 +9,7 @@ export default function Recognition() {
       aria-labelledby="recognition-heading"
       className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 xl:px-8"
     >
-      <header className="mx-auto max-w-2xl text-center">
+      <Reveal as="header" className="mx-auto max-w-2xl text-center">
         <h2
           id="recognition-heading"
           className="font-heading text-3xl font-semibold tracking-tight text-text-primary sm:text-4xl"
@@ -19,15 +20,14 @@ export default function Recognition() {
         <p className="mt-4 text-sm leading-7 text-text-secondary sm:text-base">
           Moments I’m proud of — competitions, impact work, and community roles.
         </p>
-      </header>
+      </Reveal>
 
       {recognitions.length > 0 ? (
         <div className="mt-9 grid grid-cols-1 gap-6 sm:mt-12 sm:grid-cols-2 lg:grid-cols-3">
-          {recognitions.map((recognition) => (
-            <RecognitionCard
-              key={recognition.id}
-              recognition={recognition}
-            />
+          {recognitions.map((recognition, index) => (
+            <Reveal key={recognition.id} delay={(index % 3) * 0.08} className="grid min-w-0">
+              <RecognitionCard recognition={recognition} />
+            </Reveal>
           ))}
         </div>
       ) : import.meta.env.DEV ? (
