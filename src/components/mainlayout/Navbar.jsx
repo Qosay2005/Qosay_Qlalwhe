@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import useScrollSpy from '../../hooks/useScrollSpy'
-
+import {link_cv} from '../../sections/Hero'
 const navLinks = [
   { id: 'home', label: 'Home' },
   { id: 'services', label: 'Services' },
@@ -11,9 +11,6 @@ const navLinks = [
 ]
 
 const sectionIds = navLinks.map(({ id }) => id)
-
-const resumeUrl = '/resume/Qosay-Qlalwhe-CV.pdf'
-
 const buttonClass =
   'inline-flex min-h-11 items-center justify-center rounded-md px-3 xl:px-4 text-sm font-semibold transition-colors motion-reduce:transition-none'
 
@@ -114,7 +111,7 @@ export default function Navbar() {
       </a>
 
       <a
-        href={resumeUrl}
+        href={link_cv}
         target="_blank"
         rel="noopener noreferrer"
         onClick={closeMenu}

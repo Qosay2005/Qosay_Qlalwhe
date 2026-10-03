@@ -1,6 +1,7 @@
 import heroImage from "../assets/images/hero/qosay.jpg";
 import TypingText from '../components/ui/TypingText'
 import Reveal from '../components/animations/Reveal'
+export const link_cv = "https://drive.google.com/drive/folders/1ACphv4jKhCu4Wn_TILVwoVtKjVmi67xG";
 const buttonClass =
   "inline-flex min-h-12 items-center justify-center gap-3 rounded-md px-5 text-sm font-semibold transition-colors motion-reduce:transition-none";
 
@@ -36,8 +37,7 @@ export default function Hero() {
           </Reveal>
           
           <Reveal as="p" entrance delay={0.26} className="mt-6 max-w-lg text-base leading-7 text-text-secondary sm:text-lg sm:leading-8">
-            I build modern, responsive, and user-focused web experiences with
-            clean, scalable code and thoughtful interfaces.
+          Frontend Developer, Programming & Problem Solving Trainer, and Founder & CEO of Solver Academy. Passionate about building modern web applications and helping students develop practical programming skills.
           </Reveal>
 
           <Reveal entrance delay={0.33} className="mt-8 flex flex-wrap gap-3">
@@ -52,10 +52,10 @@ export default function Hero() {
               ></span>
             </a>
             <a
-              href="/resume/Qosay-Qlalwhe-CV.pdf"
+              href={link_cv}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Resume (opens in a new tab)"
+             // aria-label="Resume (opens in a new tab)"
               className={`${buttonClass} border border-border bg-white text-primary-dark hover:border-primary hover:bg-surface`}
             >
               Resume <span aria-hidden="true"></span>
