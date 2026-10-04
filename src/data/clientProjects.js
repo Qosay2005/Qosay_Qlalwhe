@@ -20,7 +20,7 @@ export const clientProjects = [
       'Tailwind CSS',
     ],
 
-    liveUrl: '',
+    liveUrl: 'https://rosad-store.vercel.app/',
   },
 
   {
@@ -39,7 +39,7 @@ export const clientProjects = [
       'Tailwind CSS',
     ],
 
-    liveUrl: '',
+    liveUrl: 'https://pizza-plus-jet.vercel.app/',
   },
   {
   id: 'Al-Nukhba',
@@ -56,6 +56,6 @@ export const clientProjects = [
     'Tailwind CSS',
   ],
 
-  liveUrl: '',
+  liveUrl: 'https://al-nukhba.vercel.app/',
 },
 ]

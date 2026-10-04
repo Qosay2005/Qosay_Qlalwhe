@@ -21,7 +21,7 @@ export const trainingProjects = [
       'Axios',
     ],
 
-    githubUrl: '',
+    githubUrl: 'https://github.com/Qosay2005/e_commerce.git',
   },
 
   {
@@ -41,7 +41,7 @@ export const trainingProjects = [
       'JavaScript',
     ],
 
-    githubUrl: '',
+    githubUrl: 'https://github.com/Qosay2005/jenin_super_market.git',
   },
 
   {
@@ -61,6 +61,6 @@ export const trainingProjects = [
       'Tailwind CSS',
     ],
 
-    githubUrl: '',
+    githubUrl: 'https://github.com/Qosay2005/to_do_list.git',
   },
 ]
