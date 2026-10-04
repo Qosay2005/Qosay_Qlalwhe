@@ -15,7 +15,10 @@ from portfolio_data import PORTFOLIO_INFO
 load_dotenv(Path(__file__).with_name(".env"))
 api_key = os.getenv("GEMINI_API_KEY", "").strip()
 model = os.getenv("GEMINI_MODEL", "gemini-3.1-flash-lite")
-client = genai.Client(api_key=api_key, http_options=types.HttpOptions(timeout=30000)) if api_key else None
+client = genai.Client(
+    api_key=api_key,
+    http_options=types.HttpOptions(timeout=30000, retry_options=types.HttpRetryOptions(attempts=1)),
+) if api_key else None
 logger = logging.getLogger("qai")
 if not client:
     logger.warning("QAI needs GEMINI_API_KEY in backend/.env to answer questions.")
@@ -23,7 +26,7 @@ if not client:
 app = FastAPI(title="QAI")
 # Use exact deployed frontend origins in production. CORS is not authentication.
 origins = [origin.strip() for origin in os.getenv(
-    "CORS_ORIGINS", "http://localhost:5173,http://127.0.0.1:5173"
+    "CORS_ORIGINS", "https://qosayqlalwhe.vercel.app,http://localhost:5173,http://127.0.0.1:5173"
 ).split(",") if origin.strip()]
 app.add_middleware(CORSMiddleware, allow_origins=origins, allow_credentials=False,
                    allow_methods=["POST"], allow_headers=["Content-Type"])
@@ -34,13 +37,18 @@ class ChatRequest(BaseModel):
     message: str = Field(strict=True, min_length=1, max_length=2000)
 
 
+class ChatResponse(BaseModel):
+    answer: str = Field(min_length=1)
+
+
 QAI_INSTRUCTIONS = """
 You are QAI, Qosay's AI Assistant, helping visitors learn about Qosay Qlalwhe.
 Use only the supplied public portfolio information for factual claims about him.
 Never invent, assume or exaggerate skills, seniority, projects, employment,
 education, achievements, rankings, services, testimonials or personal details.
 Correct false premises politely. If a fact is absent, say it is not available in
-Qosay's public portfolio information. Preserve basic Node.js and junior status.
+Qosay's public portfolio information. Do not assign proficiency or seniority levels
+unless explicitly supplied. Do not infer education from an organization's name.
 Answer concisely, professionally and warmly. Choose the language ONLY from the
 current visitor question, not Qosay's location, name or the portfolio context:
 an English question MUST receive an English answer; an Arabic question MUST receive
@@ -62,7 +70,7 @@ def health():
     return {"message": "QAI Backend is working!"}
 
 
-@app.post("/chat")
+@app.post("/chat", response_model=ChatResponse)
 def chat(request: ChatRequest):
     if client is None:
         raise HTTPException(status_code=503, detail="QAI is temporarily unavailable. Please try again later.")

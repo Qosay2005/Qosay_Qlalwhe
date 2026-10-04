@@ -1,7 +1,18 @@
 import { useEffect, useRef, useState } from 'react'
 import './qai.css'
 import avatar_img from '../../assets/images/hero/qosay.jpg'
-const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000').replace(/\/+$/, '')
+const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || '').trim().replace(/\/+$/, '')
+
+function getChatEndpoint() {
+  const url = new URL(API_BASE_URL)
+  if (!['http:', 'https:'].includes(url.protocol) || url.username || url.password || url.search || url.hash) {
+    throw new Error('Invalid API configuration')
+  }
+  if (import.meta.env.PROD && (url.protocol !== 'https:' || ['localhost', '127.0.0.1', '[::1]'].includes(url.hostname))) {
+    throw new Error('Production requires a public HTTPS API')
+  }
+  return `${API_BASE_URL}/chat`
+}
 // Put your photo at public/images/qai/qai-avatar.jpg and set this to '/images/qai/qai-avatar.jpg'.
 const AVATAR_SOURCE = avatar_img
 const welcome = "مرحباً! أنا QAI، المساعد الذكي الخاص بقصي 👋\nبقدر أساعدك تتعرف على مشاريعه، مهاراته، خبراته، إنجازاته وخدماته. شو حاب تعرف عنه؟";const questions = [
@@ -78,18 +89,21 @@ export default function QAIChat() {
     if (!retry) setMessages((previous) => [...previous, { role: 'user', content: message }])
     const controller = new AbortController()
     pending.current = controller
-    const timeout = setTimeout(() => controller.abort(), 40000)
+    // Allow time for a sleeping Render instance to start, then answer.
+    const timeout = setTimeout(() => controller.abort(), 120000)
     try {
-      const response = await fetch(`${API_BASE_URL}/chat`, {
+      const response = await fetch(getChatEndpoint(), {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message }), signal: controller.signal,
       })
       if (!response.ok) throw new Error('Request failed')
       const data = await response.json()
-      if (typeof data.answer !== 'string' || !data.answer.trim()) throw new Error('Invalid answer')
+      if (!data || typeof data.answer !== 'string' || !data.answer.trim()) throw new Error('Invalid answer')
       setMessages((previous) => [...previous, { role: 'assistant', content: data.answer.trim() }])
     } catch {
-      setError("Sorry, QAI couldn't respond right now. Please try again.")
+      setError(controller.signal.aborted
+        ? 'QAI is taking longer than expected to connect. The server may be waking up. Please retry shortly.'
+        : "Sorry, QAI couldn't respond right now. Please try again.")
     } finally {
       clearTimeout(timeout)
       pending.current = null

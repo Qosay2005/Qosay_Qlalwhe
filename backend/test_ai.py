@@ -5,6 +5,7 @@ from unittest.mock import Mock, patch
 
 from fastapi.testclient import TestClient
 import main
+from portfolio_data import PORTFOLIO_DATA
 
 
 class ChatTests(unittest.TestCase):
@@ -45,8 +46,24 @@ class ChatTests(unittest.TestCase):
         headers = {'Origin': 'http://localhost:5173', 'Access-Control-Request-Method': 'POST',
                    'Access-Control-Request-Headers': 'Content-Type'}
         self.assertEqual(self.http.options('/chat', headers=headers).status_code, 200)
+        headers['Origin'] = 'https://qosayqlalwhe.vercel.app'
+        response = self.http.options('/chat', headers=headers)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.headers['access-control-allow-origin'], headers['Origin'])
         headers['Origin'] = 'https://untrusted.example'
         self.assertEqual(self.http.options('/chat', headers=headers).status_code, 400)
+
+    def test_current_public_knowledge(self):
+        self.assertEqual(len(PORTFOLIO_DATA['experience']), 5)
+        self.assertEqual(len(PORTFOLIO_DATA['recognition']), 9)
+        self.assertEqual(len(PORTFOLIO_DATA['client_projects']), 3)
+        self.assertEqual(len(PORTFOLIO_DATA['training_projects']), 3)
+        self.assertIn('Foothill Technology Solutions', main.PORTFOLIO_INFO)
+        self.assertIn('250+ students', main.PORTFOLIO_INFO)
+        self.assertIn('1,000+ visits', main.PORTFOLIO_INFO)
+        self.assertIn('https://rosad-store.vercel.app/', main.PORTFOLIO_INFO)
+        self.assertNotIn('2023–2028', main.PORTFOLIO_INFO)
+        self.assertNotIn('Basic', main.PORTFOLIO_INFO)
 
 
 def live_test():
