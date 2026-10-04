@@ -21,9 +21,9 @@ export default function ProjectCard({ project, actionLabel, actionUrl }) {
 
   return (
     <article aria-labelledby={headingId} className="group flex min-w-0 flex-col overflow-hidden rounded-md border border-border bg-white [overflow-wrap:anywhere] transition-[transform,border-color,box-shadow] duration-400 ease-out hover:-translate-y-1 hover:border-primary hover:shadow-sm hover:shadow-primary-dark/10 focus-within:border-primary motion-reduce:transform-none motion-reduce:transition-none">
-      <div className="aspect-[16/10] shrink-0 overflow-hidden border-b border-border bg-surface">
+      <div className="flex aspect-[4/3] max-h-80 shrink-0 items-center justify-center overflow-hidden border-b border-border bg-surface p-2">
         {image && failedImage !== image ? (
-          <img src={image} alt={imageAlt ?? title} loading="lazy" decoding="async" width="640" height="400" onError={() => setFailedImage(image)} className="size-full object-cover transition-transform duration-600 ease-out group-hover:scale-[1.03] motion-reduce:transform-none motion-reduce:transition-none" />
+          <img src={image} alt={imageAlt ?? title} loading="lazy" decoding="async" width="640" height="400" onError={() => setFailedImage(image)} className="size-full object-contain object-center transition-transform duration-600 ease-out group-hover:scale-[1.03] motion-reduce:transform-none motion-reduce:transition-none" />
         ) : (
           <div aria-hidden="true" className="flex size-full items-center justify-center font-mono text-xs tracking-wider text-text-secondary">PREVIEW UNAVAILABLE</div>
         )}
