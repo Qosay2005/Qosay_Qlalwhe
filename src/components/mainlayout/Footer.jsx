@@ -9,9 +9,9 @@ const navLinks = [
 
 // No profile URLs are currently available elsewhere in the portfolio.
 const socialLinks = [
-  { id: 'instagram', label: 'Instagram', href: 'https://www.instagram.com/' }, // TODO: Add the real Instagram profile URL.
-  { id: 'whatsapp', label: 'WhatsApp', href: 'https://wa.me/' }, // TODO: Add the real WhatsApp URL.
-  { id: 'linkedin', label: 'LinkedIn', href: 'https://www.linkedin.com/in/' }, // TODO: Add the real LinkedIn profile URL.
+  { id: 'instagram', label: 'Instagram', href: 'https://www.instagram.com/eng.aaup?stkn=MWU2NXF6YWQ4cWhraQ==' }, // TODO: Add the real Instagram profile URL.
+  { id: 'whatsapp', label: 'WhatsApp', href: 'https://wa.me/972568673682' }, // TODO: Add the real WhatsApp URL.
+  { id: 'linkedin', label: 'LinkedIn', href: 'https://www.linkedin.com/in/qosay-qlalwhe?utm_source=share_via&utm_content=profile&utm_medium=member_android' }, // TODO: Add the real LinkedIn profile URL.
 ]
 
 const availableSocialLinks = socialLinks.filter(({ href }) => href)

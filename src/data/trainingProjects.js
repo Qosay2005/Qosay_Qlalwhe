@@ -1,38 +1,66 @@
-// Temporary demo data for UI development.
-// Replace with real project information before publishing.
-// TODO: Replace every example.com URL and demo image before publishing.
-// Imported local images can be used directly in the image field.
-
-import taskManagement from '../assets/images/projects/training/task-management.svg'
-import weatherDashboard from '../assets/images/projects/training/weather-dashboard.svg'
-import ecommercePractice from '../assets/images/projects/training/ecommerce-practice.svg'
-
+// Training and learning projects.
+// Add project screenshots and GitHub URLs before publishing.
+import ecommerce from '../assets/images/projects/training/ecommerce.jpg'
+import todoapp from '../assets/images/projects/training/todoapp.jpg'
 export const trainingProjects = [
   {
-    id: 'task-management',
-    title: 'Task Management App',
-    description: 'A practice app concept for organizing tasks, tracking progress, and exploring reusable React components.',
-    image: taskManagement,
-    imageAlt: '', // Decorative demo illustration; add meaningful alt text for real screenshots.
-    technologies: ['React', 'JavaScript', 'Tailwind CSS'],
-    githubUrl: 'https://example.com',
+    id: 'ecommerce-final-project',
+    title: 'E-Commerce Web Application',
+
+    description:
+      'A full-featured e-commerce application integrated with a real backend API, featuring authentication, shopping cart, protected routes, and Arabic/English support.',
+
+    image: ecommerce,
+    imageAlt: 'E-commerce web application',
+
+    technologies: [
+      'React',
+      'Material UI',
+      'TanStack Query',
+      'Zustand',
+      'Axios',
+    ],
+
+    githubUrl: '',
   },
+
   {
-    id: 'weather-dashboard',
-    title: 'Weather Dashboard',
-    description: 'A practice dashboard concept for exploring API requests, forecast layouts, and responsive interfaces.',
-    image: weatherDashboard,
-    imageAlt: '', // Decorative demo illustration; add meaningful alt text for real screenshots.
-    technologies: ['JavaScript', 'REST API', 'CSS'],
-    githubUrl: 'https://example.com',
+    id: 'jenin-supermarket',
+    title: 'Jenin Supermarket',
+
+    description:
+      'An academic supermarket management system focused on database design, data management, and backend integration using Node.js and SQL.',
+
+    image: '',
+    imageAlt: 'Jenin Supermarket management system',
+
+    technologies: [
+      'Node.js',
+      'Express.js',
+      'MySQL',
+      'JavaScript',
+    ],
+
+    githubUrl: '',
   },
+
   {
-    id: 'ecommerce-practice',
-    title: 'E-Commerce Practice App',
-    description: 'A practice storefront concept for product browsing, cart interactions, and asynchronous data handling.',
-    image: ecommercePractice,
-    imageAlt: '', // Decorative demo illustration; add meaningful alt text for real screenshots.
-    technologies: ['React', 'JavaScript', 'React Query'],
-    githubUrl: 'https://example.com',
+    id: 'todo-list-app',
+    title: 'To-Do List App',
+
+    description:
+      'An interactive task management application for organizing daily tasks, featuring a chatbot to improve user interaction and usability.',
+
+    image: todoapp,
+    imageAlt: 'To-Do List task management application',
+
+    technologies: [
+      'HTML',
+      'CSS',
+      'JavaScript',
+      'Tailwind CSS',
+    ],
+
+    githubUrl: '',
   },
 ]
